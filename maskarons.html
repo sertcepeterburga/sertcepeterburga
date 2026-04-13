@@ -16,25 +16,22 @@
 
     body {
         margin: 0;
-        /* Это свойство ставит сайдбар и контент в один ряд */
         display: flex; 
         flex-direction: row;
-        align-items: flex-start; /* Выравнивание по верху */
+        align-items: flex-start; 
         background: var(--bg-color);
         color: var(--text-main);
         font-family: "Inter", sans-serif;
         min-height: 100vh;
     }
 
-    /* Боковая панель */
+    
     .sidebar {
         width: 280px;
-        /* Фиксируем ширину, чтобы она не сжималась */
         flex-shrink: 0; 
         background: #ede6da;
         border-right: 1px solid var(--border-color);
         padding: 30px 20px;
-        /* Делаем панель липкой при скролле */
         height: 100vh;
         position: sticky;
         top: 0;
@@ -53,9 +50,7 @@
         cursor: pointer;
     }
     
-    .back-link:hover {
-        border-bottom-style: solid;
-    }
+    .back-link:hover { border-bottom-style: solid; }
 
     .sidebar h2 {
         font-family: "Playfair Display", serif;
@@ -66,9 +61,7 @@
         margin-top: 0;
     }
 
-    .nav-item {
-        margin-bottom: 10px;
-    }
+    .nav-item { margin-bottom: 10px; }
 
     .nav-label {
         font-weight: 600;
@@ -81,16 +74,13 @@
         user-select: none;
     }
 
-    .nav-label:hover {
-        background: #dcd4c5;
-    }
+    .nav-label:hover { background: #dcd4c5; }
     
     .submenu {
         display: none; 
         list-style: none;
         padding-left: 20px;
         margin-top: 5px;
-        margin-bottom: 0;
     }
 
     .submenu li {
@@ -98,7 +88,6 @@
         font-size: 14px;
         color: var(--text-muted);
         cursor: pointer;
-        transition: 0.2s;
     }
 
     .submenu li:hover {
@@ -106,13 +95,11 @@
         text-decoration: underline;
     }
 
-    .active .submenu {
-        display: block;
-    }
+    .active .submenu { display: block; }
 
-    /* Основной контент */
+    
     .main-content {
-        flex: 1; /* Занимает всё оставшееся место */
+        flex: 1; 
         padding: 40px;
         box-sizing: border-box;
     }
@@ -144,6 +131,7 @@
         padding: 18px;
         transition: transform 0.3s ease;
         border-radius: 4px;
+        cursor: pointer;
     }
 
     .exhibit:hover {
@@ -159,10 +147,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 13px;
-        letter-spacing: 1px;
-        color: #6a6358;
+        overflow: hidden;
         margin-bottom: 14px;
+    }
+
+    .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .label {
@@ -179,149 +171,137 @@
         margin-bottom: 10px;
     }
 
-    .meta {
-        font-size: 14px;
-        line-height: 1.5;
+    .meta { font-size: 14px; line-height: 1.5; }
+
+    
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1000; 
+        left: 0; top: 0;
+        width: 100%; height: 100%; 
+        background-color: rgba(0,0,0,0.8);
+        backdrop-filter: blur(4px);
     }
 
-    .description {
-        margin-top: 12px;
-        font-size: 14px;
-        font-style: italic;
+    .modal-content {
+        background-color: var(--card-bg);
+        margin: 50px auto; 
+        padding: 40px;
+        border-radius: 8px;
+        width: 70%;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
     }
 
-    .source {
-        margin-top: 10px;
-        font-size: 13px;
+    .close {
+        position: absolute;
+        right: 20px; top: 10px;
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--text-muted);
     }
 
-    .source a {
-        color: var(--accent);
-        text-decoration: none;
-        border-bottom: 1px dotted var(--accent);
+    .modal-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
     }
+
+    .modal-table td {
+        padding: 12px;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 15px;
+    }
+
+    .modal-table b { color: var(--accent); }
+    
+    .modal-desc { line-height: 1.6; font-size: 15px; margin-top: 20px; }
+    .modal-author { font-size: 13px; color: var(--text-muted); margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 10px; }
 </style>
 </head>
 <body>
 
 <div class="sidebar">
     <a href="index.html" class="back-link">← Назад к главной</a>
-    
     <h2>Навигация</h2>
-    
     <div class="nav-item" id="maskaron-section">
         <span class="nav-label" onclick="toggleMenu('maskaron-section')">▼ Маскароны</span>
         <ul class="submenu">
             <li onclick="filterDistricts('all')">Все районы</li>
             <li onclick="filterDistricts('central')">Центральный район</li>
-            <li onclick="filterDistricts('vasileostrovsky')">Василеостровский</li>
-            <li onclick="filterDistricts('petrogradsky')">Петроградский</li>
         </ul>
-    </div>
-
-    <div class="nav-item">
-        <span class="nav-label" onclick="alert('Раздел пока пуст')">Другие элементы</span>
     </div>
 </div>
 
 <div class="main-content">
     <h1>Маскароны Санкт-Петербурга</h1>
-    <div class="subtitle">
-        Цифровая музейная картотека архитектурных маскаронов XIX–XX вв.
-    </div>
+    <div class="subtitle">Цифровая музейная картотека архитектурных маскаронов XIX–XX вв.</div>
 
     <div class="gallery" id="gallery">
-        <div class="exhibit" data-district="central">
-            <div class="photo">ЗАГРУЗИ ФОТО</div>
-            <div class="label">Головы-барельефы</div>
-            <div class="category">Животные / Центральный</div>
+        <div class="exhibit" data-district="central" onclick="openBadayevModal()">
+            <div class="photo">
+                <img src="Жуковского 53.jpg" alt="Барельеф Аврора">
+            </div>
+            <div class="label">Барельеф «Аврора» [cite: 8]</div>
+            <div class="category">Мифология / Центральный [cite: 8]</div>
             <div class="meta">
-                <b>Адрес:</b> Херсонская ул., 5–7<br>
-                <b>Архитектор:</b> А. П. Сосков<br>
-                <b>Год:</b> 1903
-            </div>
-            <div class="description">
-                Барельефные изображения голов животных на фасаде доходного дома.
-            </div>
-            <div class="source">
-                <a href="https://www.citywalls.ru/house16285.html" target="_blank">Источник</a>
+                <b>Адрес:</b> Жуковского ул., 53 [cite: 8]<br>
+                <b>Архитекторы:</b> В. А. Косяков и др. [cite: 8]<br>
+                <b>Год:</b> 1904–1906 [cite: 8]
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="exhibit" data-district="central">
-            <div class="photo">test</div>
-            <div class="label">Тестовый маскарон</div>
-            <div class="category">Животные / Центральный</div>
-            <div class="meta">
-                <b>Адрес:</b> Херсонская ул., 5–7<br>
-                <b>Архитектор:</b> А. П. Сосков<br>
-                <b>Год:</b> 1903
-            </div>
-            <div class="description">
-                Пример описания маскарона.
-            </div>
-            <div class="source">
-                <a href="#" target="_blank">Источник</a>
-            </div>
-        </div>
-
-        <div class="exhibit" data-district="central">
-            <div class="photo">ЗАГРУЗИ ФОТО</div>
-            <div class="label">Голова-горельеф</div>
-            <div class="category">Животные / Центральный</div>
-            <div class="meta">
-                <b>Адрес:</b> ул. Восстания, 51<br>
-                <b>Архитектор:</b> В. И. Кестнер<br>
-                <b>Год:</b> 1914
-            </div>
-            <div class="description">
-                Характерный элемент декоративного убранства фасада.
-            </div>
-            <div class="source">
-                <a href="https://www.citywalls.ru/house913.html" target="_blank">Источник</a>
-            </div>
-        </div>
-        
-         <div class="exhibit" data-district="central">
-            <div class="photo">ЗАГРУЗИ ФОТО</div>
-            <div class="label">Голова-горельеф</div>
-            <div class="category">Животные / Центральный</div>
-            <div class="meta">
-                <b>Адрес:</b> ул. Рылеева, 27<br>
-                <b>Архитектор:</b> А. В. Малов<br>
-                <b>Год:</b> 1894
-            </div>
-            <div class="description">
-                Маскарон на доме путешественника и коллекционера старины.
-            </div>
-            <div class="source">
-                <a href="https://www.citywalls.ru/house5917.html" target="_blank">Источник</a>
-            </div>
-        </div>
-
+<div id="infoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalBody"></div>
     </div>
 </div>
 
 <script>
-    // Функция для открытия/закрытия подразделов
     function toggleMenu(id) {
-        const element = document.getElementById(id);
-        element.classList.toggle('active');
+        document.getElementById(id).classList.toggle('active');
     }
 
-    // Функция фильтрации карточек по районам
     function filterDistricts(district) {
         const items = document.querySelectorAll('.exhibit');
-        
         items.forEach(item => {
-            if (district === 'all') {
-                item.style.display = 'block';
-            } else if (item.getAttribute('data-district') === district) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
+            item.style.display = (district === 'all' || item.dataset.district === district) ? 'block' : 'none';
         });
+    }
+
+    function openBadayevModal() {
+        const content = `
+            <h2 style="font-family: 'Playfair Display', serif;">Дом П. Т. Бадаева [cite: 8]</h2>
+            <table class="modal-table">
+                <tr><td><b>Элемент:</b></td><td>Барельеф [cite: 8]</td></tr>
+                <tr><td><b>Местоположение:</b></td><td>щипцовый объем на углу здания, центральная часть, последний этаж [cite: 8]</td></tr>
+                <tr><td><b>Владелец:</b></td><td>П. Т. Бадаев [cite: 8]</td></tr>
+                <tr><td><b>Год постройки:</b></td><td>1904-1906 [cite: 8]</td></tr>
+                <tr><td><b>Архитекторы:</b></td><td>С. Ф. Кириллов, В. А. Косяков, Г. А. Косяков, Н. Л. Подбереский [cite: 8]</td></tr>
+            </table>
+            <div class="modal-desc">
+                <p><b>Описание:</b> Образ крылатой Авроры, богини утренней зари, дополнен длинной косой на русский мотив. [cite: 8] Над головой – солнечный круг и зодиакальный круг как символ непрерывного продолжения жизни. [cite: 8]</p>
+                <p>Этот сюжет был заимствован архитекторами с летней виллы папы Пия IV в Ватикане. [cite: 8]</p>
+                <p><i>Историческая справка:</i> Существует предположение, что часть декоративного убранства была утрачена в 1941 году из-за взрыва фугасной авиабомбы. [cite: 8]</p>
+            </div>
+            <div class="modal-author">Фотография сделана автором проекта: Максимом Мироновым </div>
+        `;
+        document.getElementById('modalBody').innerHTML = content;
+        document.getElementById('infoModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('infoModal').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('infoModal')) closeModal();
     }
 </script>
 
