@@ -16,22 +16,21 @@
 
     body {
         margin: 0;
-        display: flex; 
+        display: flex;
         flex-direction: row;
-        align-items: flex-start; 
+        align-items: flex-start;
         background: var(--bg-color);
         color: var(--text-main);
         font-family: "Inter", sans-serif;
         min-height: 100vh;
     }
 
-    
     .sidebar {
-        width: 280px;
-        flex-shrink: 0; 
+        width: 320px;
+        flex-shrink: 0;
         background: #ede6da;
         border-right: 1px solid var(--border-color);
-        padding: 30px 20px;
+        padding: 30px 15px;
         height: 100vh;
         position: sticky;
         top: 0;
@@ -41,65 +40,62 @@
 
     .back-link {
         display: inline-block;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         color: var(--accent);
         text-decoration: none;
         font-size: 14px;
         border-bottom: 1px dotted var(--accent);
         font-weight: 600;
-        cursor: pointer;
     }
-    
-    .back-link:hover { border-bottom-style: solid; }
 
     .sidebar h2 {
         font-family: "Playfair Display", serif;
         font-size: 22px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
-        margin-top: 0;
     }
 
-    .nav-item { margin-bottom: 10px; }
+    .nav-item { margin-bottom: 8px; }
 
     .nav-label {
         font-weight: 600;
         cursor: pointer;
-        padding: 8px 12px;
+        padding: 10px 12px;
         display: block;
         background: #e3ddd2;
         border-radius: 4px;
         transition: 0.3s;
-        user-select: none;
+        font-size: 14px;
     }
 
     .nav-label:hover { background: #dcd4c5; }
-    
+
     .submenu {
-        display: none; 
+        display: none;
         list-style: none;
-        padding-left: 20px;
-        margin-top: 5px;
+        padding-left: 15px;
+        margin: 5px 0 10px 0;
     }
 
     .submenu li {
-        padding: 6px 0;
-        font-size: 14px;
+        padding: 5px 8px;
+        font-size: 13px;
         color: var(--text-muted);
         cursor: pointer;
+        border-radius: 3px;
     }
 
     .submenu li:hover {
+        background: rgba(90, 76, 59, 0.05);
         color: var(--accent);
-        text-decoration: underline;
     }
 
     .active .submenu { display: block; }
+    .active .nav-label { background: #dcd4c5; }
 
-    
     .main-content {
-        flex: 1; 
+        flex: 1;
         padding: 40px;
         box-sizing: border-box;
     }
@@ -107,9 +103,8 @@
     h1 {
         text-align: center;
         font-family: "Playfair Display", serif;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         margin-bottom: 10px;
-        margin-top: 0;
     }
 
     .subtitle {
@@ -129,7 +124,7 @@
         background: var(--card-bg);
         border: 1px solid var(--border-color);
         padding: 18px;
-        transition: transform 0.3s ease;
+        transition: 0.3s;
         border-radius: 4px;
         cursor: pointer;
     }
@@ -140,98 +135,127 @@
     }
 
     .photo {
-        width: 100%;
-        height: 200px;
+        width: 100%; height: 200px;
         background: #e3ddd2;
         border: 1px dashed #bfb6a6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        margin-bottom: 14px;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden; margin-bottom: 14px;
     }
 
-    .photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    .photo img { width: 100%; height: 100%; object-fit: cover; }
 
-    .label {
-        font-family: "Playfair Display", serif;
-        font-size: 18px;
-        margin-bottom: 4px;
-    }
-
-    .category {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #7a7265;
-        margin-bottom: 10px;
-    }
-
+    .label { font-family: "Playfair Display", serif; font-size: 18px; margin-bottom: 4px; }
+    .category { font-size: 12px; text-transform: uppercase; color: #7a7265; margin-bottom: 10px; }
     .meta { font-size: 14px; line-height: 1.5; }
 
-    
     .modal {
-        display: none; 
-        position: fixed; 
-        z-index: 1000; 
-        left: 0; top: 0;
-        width: 100%; height: 100%; 
-        background-color: rgba(0,0,0,0.8);
-        backdrop-filter: blur(4px);
+        display: none; position: fixed; z-index: 1000;
+        left: 0; top: 0; width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.8); backdrop-filter: blur(4px);
     }
 
     .modal-content {
-        background-color: var(--card-bg);
-        margin: 50px auto; 
-        padding: 40px;
-        border-radius: 8px;
-        width: 70%;
-        max-width: 800px;
-        max-height: 80vh;
-        overflow-y: auto;
-        position: relative;
+        background-color: var(--card-bg); margin: 50px auto;
+        padding: 40px; border-radius: 8px; width: 70%;
+        max-width: 800px; max-height: 80vh; overflow-y: auto; position: relative;
     }
 
-    .close {
-        position: absolute;
-        right: 20px; top: 10px;
-        font-size: 30px;
-        cursor: pointer;
-        color: var(--text-muted);
-    }
-
-    .modal-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-    }
-
-    .modal-table td {
-        padding: 12px;
-        border-bottom: 1px solid var(--border-color);
-        font-size: 15px;
-    }
-
-    .modal-table b { color: var(--accent); }
-    
-    .modal-desc { line-height: 1.6; font-size: 15px; margin-top: 20px; }
-    .modal-author { font-size: 13px; color: var(--text-muted); margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 10px; }
+    .close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; }
+    .modal-image {
+        width: 100%; max-height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 20px; display: block; }
+    .modal-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .modal-table td { padding: 12px; border-bottom: 1px solid var(--border-color); font-size: 15px; }
+    .modal-desc { line-height: 1.6; font-size: 15px; }
 </style>
 </head>
 <body>
 
 <div class="sidebar">
     <a href="index.html" class="back-link">← Назад к главной</a>
-    <h2>Навигация</h2>
-    <div class="nav-item" id="maskaron-section">
-        <span class="nav-label" onclick="toggleMenu('maskaron-section')">▼ Маскароны</span>
+
+    <div class="nav-item">
+        <span class="nav-label" onclick="filterAll()">Показать все элементы</span>
+    </div>
+
+    <h2>Разделы</h2>
+
+    <div class="nav-item" id="sec-maskaron">
+        <span class="nav-label" onclick="toggleMenu('sec-maskaron')">▼ Маскароны</span>
         <ul class="submenu">
-            <li onclick="filterDistricts('all')">Все районы</li>
-            <li onclick="filterDistricts('central')">Центральный район</li>
+            <li onclick="filter('maskaron', 'all')">Все районы</li>
+            <li onclick="filter('maskaron', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-gorelyef">
+        <span class="nav-label" onclick="toggleMenu('sec-gorelyef')">▼ Горельефы (фигуры)</span>
+        <ul class="submenu">
+            <li onclick="filter('gorelyef', 'all')">Все районы</li>
+            <li onclick="filter('gorelyef', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-barelyef">
+        <span class="nav-label" onclick="toggleMenu('sec-barelyef')">▼ Барельефы (фигуры)</span>
+        <ul class="submenu">
+            <li onclick="filter('barelyef', 'all')">Все районы</li>
+            <li onclick="filter('barelyef', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-lepnina">
+        <span class="nav-label" onclick="toggleMenu('sec-lepnina')">▼ Лепнина</span>
+        <ul class="submenu">
+            <li onclick="filter('lepnina', 'all')">Все районы</li>
+            <li onclick="filter('lepnina', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-statuya">
+        <span class="nav-label" onclick="toggleMenu('sec-statuya')">▼ Статуи</span>
+        <ul class="submenu">
+            <li onclick="filter('statuya', 'all')">Все районы</li>
+            <li onclick="filter('statuya', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-atlant">
+        <span class="nav-label" onclick="toggleMenu('sec-atlant')">▼ Атланты</span>
+        <ul class="submenu">
+            <li onclick="filter('atlant', 'all')">Все районы</li>
+            <li onclick="filter('atlant', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-kariatida">
+        <span class="nav-label" onclick="toggleMenu('sec-kariatida')">▼ Кариатиды</span>
+        <ul class="submenu">
+            <li onclick="filter('kariatida', 'all')">Все районы</li>
+            <li onclick="filter('kariatida', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-putti">
+        <span class="nav-label" onclick="toggleMenu('sec-putti')">▼ Путти</span>
+        <ul class="submenu">
+            <li onclick="filter('putti', 'all')">Все районы</li>
+            <li onclick="filter('putti', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-gerold">
+        <span class="nav-label" onclick="toggleMenu('sec-gerold')">▼ Геральдические фигуры</span>
+        <ul class="submenu">
+            <li onclick="filter('gerold', 'all')">Все районы</li>
+            <li onclick="filter('gerold', 'central')">Центральный район</li>
+        </ul>
+    </div>
+
+    <div class="nav-item" id="sec-zhivopis">
+        <span class="nav-label" onclick="toggleMenu('sec-zhivopis')">▼ Живописные сюжеты</span>
+        <ul class="submenu">
+            <li onclick="filter('zhivopis', 'all')">Все районы</li>
+            <li onclick="filter('zhivopis', 'central')">Центральный район</li>
         </ul>
     </div>
 </div>
@@ -241,39 +265,65 @@
     <div class="subtitle">Цифровая музейная картотека архитектурных элементов XIX–XX вв.</div>
 
     <div class="gallery" id="gallery">
-        <div class="exhibit" data-district="central" onclick="openBadayevModal()">
+        <div class="exhibit"
+             data-category="barelyef" data-district="central" data-title="Дом П. Т. Бадаева"
+             data-element="Барельеф"
+             data-location="щипцовый объем на углу здания, центральная часть, последний этаж"
+             data-owner="П. Т. Бадаев"
+             data-year="1904-1906"
+             data-arch="С. Ф. Кириллов, В. А. Косяков, Г. А. Косяков, Н. Л. Подбереский"
+             data-img="Жуковского 53.JPG"
+             data-photographer="Варсонова Д. А."
+             onclick="openUniversalModal(this)">
+            
             <div class="photo">
                 <img src="Жуковского 53.JPG" alt="Барельеф Аврора">
             </div>
             <div class="label">Барельеф «Аврора»</div>
-            <div class="category">Мифология / Центральный </div>
+            <div class="category">Барельеф / Центральный </div>
             <div class="meta">
-                <b>Адрес:</b> Жуковского ул., 53 <br>
-                <b>Архитекторы:</b> В. А. Косяков и др. <br>
-                <b>Год:</b> 1904–1906 
+                <b>Адрес:</b> ул. Жуковского, 53 <br>
+                <b>Год:</b> 1904–1906
             </div>
-        </div>
-        <div class="exhibit" data-district="central">
-            <div class="photo">НЕТ ФОТО</div>
-            <div class="label">Голова-горельеф</div>
-            <div class="category">Животные / Центральный</div>
-            <div class="meta">
-                <b>Адрес:</b> ул. Рылеева, 27<br>
-                <b>Архитектор:</b> А. В. Малов<br>
-                <b>Год:</b> 1894
+
+            <div class="full-description" style="display: none;">
+                <p><b>Описание:</b> Образ крылатой Авроры, богини утренней зари, дополнен длинной косой на русский мотив. Над головой – солнечный круг. Над солнечным кругом – зодиакальный круг как символ непрерывного продолжения жизни. Данный мифологический сюжет заимствован архитекторами Г.А. Косяковым и Н.Л. Подбереским с летней виллы папы Пия IV в Ватикане. </p>
+                <p><i>Историческая справка:</i> Из акта по результатам государственной историко-культурной экспертизы проектной документации на проведение работ по сохранению объекта культурного наследия регионального значения «Дом П. Т. Бадаева», разработанной ООО «Ажио» в 2020 г., мы можем узнать об утраченных декоративных элементах. </p>
+                <p>«На фиксационном чертеже, выполненном в июне 1907 г. для Санкт-Петербургского городского кредитного общества, можно видеть лепной декор, близкий к современному. Ключевое отличие состоит в том, что пространство вокруг фигуры крылатой женщины не пусто, а с обеих сторон заполнено несколькими тянущимися к нему крылатыми фигурами [1, с. 20] </p>
+                <p>На чертеже видны две фигуры, обращенных к Авроре. Это «позволяет допустить, что вся левая часть щипцового объема была заполнена барельефом... Можно допустить, что на барельефе вокруг Авроры помещались Горы (Оры) - богини времён года в древнегреческой мифологии, спутницы Гелиоса и Авроры. Они считались стражами Олимпа, открывающими и закрывающими его облачные ворота… Также можно предположить, что самая нижняя фигура в правой части барельефа - один из ветров, сыновей Авроры. Фон нижней части барельефа был выполнен в виде облаков» [1. с. 22].  </p>
+                <p>«Можно предположить, что декоративное убранство было утрачено в 1941 году. Сохранился акт экспертизы от 3-го декабря 1941 года, фиксирующий, что «в передней части дворового правого корпуса на высоте потолка 3-го этажа» взорвалась ФАБ (фугасная авиабомба) весом примерно 100 кг» [1, с. 21]. </p>
+
+                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">
+                    <strong>АКТ</strong> по результатам государственной историко-культурной экспертизы проектной документации на проведение работ по сохранению объекта культурного наследия регионального значения «Дом П. Т. Бадаева», расположенного по адресу: Санкт-Петербург, Восстания ул., 19, лит.А: «Реставрация и ремонт лицевого фасада и брандмауэра объекта культурного наследия регионального значения «Дом П. Т. Бадаева» Шифр МКД-4-2020(лот №7)–2, разработанной ООО «Ажио» в 2020 г. kgiop.gov.spb.ru <br>
+                    URL: <a href="https://kgiop.gov.spb.ru/media/uploads/userfiles/2020/11/16/01-26-2401.pdf" target="_blank" style="color: var(--accent);">https://kgiop.gov.spb.ru/media/uploads/userfiles/2020/11/16/01-26-2401.pdf</a> <br>
+                    (дата обращения: 08.04.2026).
+                </p>
             </div>
         </div>
 
-        <div class="exhibit" data-district="central">
-            <div class="photo">НЕТ ФОТО</div>
-            <div class="label">Маскарон-лев</div>
-            <div class="category">Мифология / Центральный</div>
-            <div class="meta">
-                <b>Адрес:</b> Литейный пр., 36<br>
-                <b>Архитектор:</b> Неизвестен<br>
-                <b>Год:</b> XIX век
-            </div>
-        </div>
+        <div class="exhibit"
+             data-category="statuya"
+             data-district="central"
+             data-title="?"
+             data-element="Элемент"
+             data-location="?"
+             data-owner="?"
+             data-year="? век"
+             data-arch="?"
+             data-img="путь_к_фото.jpg"
+             data-photographer="Фотограф"
+             onclick="openUniversalModal(this)">
+
+            <div class="photo">
+                <img src="путькфото.jpg" alt="фото"> </div>
+            <div class="label">?</div>
+            <div class="category">Статуя / для теста</div>
+            <div class="meta"><b>Адрес:</b> Адрес</div>
+
+            <div class="full-description" style="display: none;">
+                <p><b>Описание:</b> Тест.</p>
 
     </div>
 </div>
@@ -290,52 +340,52 @@
         document.getElementById(id).classList.toggle('active');
     }
 
-    function filterDistricts(district) {
+    function filter(cat, dist) {
         const items = document.querySelectorAll('.exhibit');
         items.forEach(item => {
-            item.style.display = (district === 'all' || item.dataset.district === district) ? 'block' : 'none';
+            const matchCat = (item.dataset.category === cat);
+            const matchDist = (dist === 'all' || item.dataset.district === dist);
+
+            if (matchCat && matchDist) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
         });
     }
+    
+    function filterAll() {
+        document.querySelectorAll('.exhibit').forEach(item => item.style.display = 'block');
+    }
 
-    function openBadayevModal() {
+    function openUniversalModal(element) {
+        const d = element.dataset;
+        const fullDesc = element.querySelector('.full-description').innerHTML;
+
         const content = `
-            <h2 style="font-family: 'Playfair Display', serif;">Дом П. Т. Бадаева </h2>
+            <h2 style="font-family: 'Playfair Display', serif;">${d.title}</h2>
+            <img src="${d.img}" class="modal-image" alt="${d.title}">
             <table class="modal-table">
-                <tr><td><b>Элемент:</b></td><td>Барельеф </td></tr>
-                <tr><td><b>Местоположение:</b></td><td>щипцовый объем на углу здания, центральная часть, последний этаж </td></tr>
-                <tr><td><b>Владелец:</b></td><td>П. Т. Бадаев </td></tr>
-                <tr><td><b>Год постройки:</b></td><td>1904-1906 </td></tr>
-                <tr><td><b>Архитекторы:</b></td><td>С. Ф. Кириллов, В. А. Косяков, Г. А. Косяков, Н. Л. Подбереский </td></tr>
+                <tr><td><b>Элемент:</b></td><td>${d.element}</td></tr>
+                <tr><td><b>Местоположение:</b></td><td>${d.location}</td></tr>
+                <tr><td><b>Владелец:</b></td><td>${d.owner}</td></tr>
+                <tr><td><b>Год постройки:</b></td><td>${d.year}</td></tr>
+                <tr><td><b>Архитекторы:</b></td><td>${d.arch}</td></tr>
             </table>
             <div class="modal-desc">
-                <p><b>Описание:</b> Образ крылатой Авроры, богини утренней зари, дополнен длинной косой на русский мотив. Над головой – солнечный круг. Над солнечным кругом – зодиакальный круг как символ непрерывного продолжения жизни. Данный мифологический сюжет заимствован архитекторами Г.А. Косяковым и Н.Л. Подбереским с летней виллы папы Пия IV в Ватикане. </p>
-                <p><i>Историческая справка:</i> Из акта по результатам государственной историко-культурной экспертизы проектной документации на проведение работ по сохранению объекта культурного наследия регионального значения «Дом П. Т. Бадаева», разработанной ООО «Ажио» в 2020 г., мы можем узнать об утраченных декоративных элементах. </p>
-                <p>«На фиксационном чертеже, выполненном в июне 1907 г. для Санкт-Петербургского городского кредитного общества, можно видеть лепной декор, близкий к современному. Ключевое отличие состоит в том, что пространство вокруг фигуры крылатой женщины не пусто, а с обеих сторон заполнено несколькими тянущимися к нему крылатыми фигурами [1, с. 20] </p>
-                <p>На чертеже видны две фигуры, обращенных к Авроре. Это «позволяет допустить, что вся левая часть щипцового объема была заполнена барельефом... Можно допустить, что на барельефе вокруг Авроры помещались Горы (Оры) - богини времён года в древнегреческой мифологии, спутницы Гелиоса и Авроры. Они считались стражами Олимпа, открывающими и закрывающими его облачные ворота… Также можно предположить, что самая нижняя фигура в правой части барельефа - один из ветров, сыновей Авроры. Фон нижней части барельефа был выполнен в виде облаков» [1. с. 22].  </p>
-                <p>«Можно предположить, что декоративное убранство было утрачено в 1941 году. Сохранился акт экспертизы от 3-го декабря 1941 года, фиксирующий, что «в передней части дворового правого корпуса на высоте потолка 3-го этажа» взорвалась ФАБ (фугасная авиабомба) весом примерно 100 кг» [1, с. 21]. </p>
-
-                <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-
-                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.4;">
-                    <strong>АКТ</strong> по результатам государственной историко-культурной экспертизы проектной документации на проведение работ по сохранению объекта культурного наследия регионального значения «Дом П. Т. Бадаева», расположенного по адресу: Санкт-Петербург, Восстания ул., 19, лит.А: «Реставрация и ремонт лицевого фасада и брандмауэра объекта культурного наследия регионального значения «Дом П. Т. Бадаева» Шифр МКД-4-2020(лот №7)–2, разработанной ООО «Ажио» в 2020 г. kgiop.gov.spb.ru <br>
-                    URL: <a href="https://kgiop.gov.spb.ru/media/uploads/userfiles/2020/11/16/01-26-2401.pdf" target="_blank" style="color: var(--accent);">https://kgiop.gov.spb.ru/media/uploads/userfiles/2020/11/16/01-26-2401.pdf</a> <br>
-                    (дата обращения: 08.04.2026).
-
-
+                ${fullDesc}
+                <p style="margin-top:20px; font-size: 12px; color: #7a7265; border-top: 1px solid #d9cfbe; padding-top: 10px;">
+                    <b>Фотограф:</b> ${d.photographer}
+                </p>
             </div>
-            <div class="modal-author">Фотограф: Дарья Александровна </div>
         `;
+
         document.getElementById('modalBody').innerHTML = content;
         document.getElementById('infoModal').style.display = "block";
     }
 
-    function closeModal() {
-        document.getElementById('infoModal').style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('infoModal')) closeModal();
-    }
+    function closeModal() { document.getElementById('infoModal').style.display = "none"; }
+    window.onclick = function(e) { if (e.target == document.getElementById('infoModal')) closeModal(); }
 </script>
 
 </body>
